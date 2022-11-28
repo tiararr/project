@@ -1,0 +1,21 @@
+from matplotlib import pyplot as plt
+import seaborn as sns
+import numpy as np
+import pandas as pd
+
+#import the dataset
+df = sns.load_dataset('diamonds')
+df.head()
+
+#set the figure size of the scatterplot
+sns.set({'figure.figsize':(13,13)})
+palette = "ch:r=-.2,d=.3_r"
+
+#make a scatterplot
+sns.scatterplot(data=df,x='carat',y='price',hue='clarity',size='depth',
+                sizes=(2,7),palette=palette, linewidth=0)
+                
+with sns.axes_style(style='ticks'):
+  g=sns.catplot('clarity','price', col='cut', data=df, kind='box',
+                showfliers=False,dodge=False,aspect=.90)
+  g.set_axis_labels('Clarity','Price')
